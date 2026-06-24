@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: casino-frontend
+  labels:
+    app: casino-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: casino-frontend
+  template:
+    metadata:
+      labels:
+        app: casino-frontend
+    spec:
+      containers:
+        - name: casino-frontend
+          image: <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/casino-frontend:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "150m"
+              memory: "128Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
