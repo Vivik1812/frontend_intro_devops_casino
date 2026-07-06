@@ -52,11 +52,11 @@ import { AuthService } from '../../services/auth.service';
       backdrop-filter: blur(14px);
     }
     .marca {
+<<<<<<< HEAD
       font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
       font-size: 19px; letter-spacing: 3px; text-transform: uppercase;
-      background: linear-gradient(90deg, #b8902a, #f0d060, #d4af37, #f0d060, #b8902a);
-      background-size: 300% 100%;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-family: 'Georgia', serif;
+      font-size: 17px; letter-spacing: 4px; text-transform: uppercase;
       background-clip: text;
       animation: shimmer 2.5s linear infinite;
       text-decoration: none;
