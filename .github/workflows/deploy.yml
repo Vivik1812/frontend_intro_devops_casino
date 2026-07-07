@@ -9,7 +9,33 @@ env:
   SERVICE_NAME: casino-frontend
   IMAGE_VERSION: "v1.0.0"
 jobs:
+
+  #Primeraetapa: TESTS
+  test:
+    name: Pruebas unitarias frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      
+      - name: Instalar dependencias 
+        run: npm ci
+
+      - name: Ejecutar tests(Si existen)
+        run: |
+          if npm run | grep -q "^ test"; then
+            npm test
+          else
+            echo "No existen tests configurados"
+          fi
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: 1. Descargar el codigo del repo
